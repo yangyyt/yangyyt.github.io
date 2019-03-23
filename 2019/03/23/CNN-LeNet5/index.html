@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="YYT">
 <meta property="og:description" content="深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。  用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5.png">
-<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/卷积和池化操作.png">
-<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5中S2与C3部分连接.png">
-<meta property="og:updated_time" content="2019-03-23T16:05:30.773Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/23/CNN-LeNet5/D:/noSystem/yangyyt.github.io/source/_posts/CNN-LeNet5/LeNet5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/23/CNN-LeNet5/D:/noSystem/yangyyt.github.io/source/_posts/CNN-LeNet5/卷积和池化操作.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/23/CNN-LeNet5/D:/noSystem/yangyyt.github.io/source/_posts/CNN-LeNet5/LeNet5中S2与C3部分连接.png">
+<meta property="og:updated_time" content="2019-03-23T16:26:55.373Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CNN---LeNet5">
 <meta name="twitter:description" content="深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。  用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。">
-<meta name="twitter:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/23/CNN-LeNet5/D:/noSystem/yangyyt.github.io/source/_posts/CNN-LeNet5/LeNet5.png">
 
 
 
@@ -373,7 +373,7 @@
 </blockquote>
 <hr>
 <p>接下来，<strong>LeNet网络的结构</strong>：</p>
-<h4 id="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"><a href="#输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层" class="headerlink" title="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"></a>输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层</h4><p><img src="D:\noSystem\yangyyt.github.io\source\images\LeNet5.png" alt="LeNet"></p>
+<h4 id="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"><a href="#输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层" class="headerlink" title="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"></a>输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层</h4><p><img src="/2019/03/23/CNN-LeNet5/D:/noSystem\yangyyt.github.io\source\_posts\CNN-LeNet5\LeNet5.png" alt="LeNet"></p>
 <ul>
 <li>​    </li>
 </ul>
@@ -392,7 +392,7 @@
 <li>parameters:6×(1+1)</li>
 <li>parameters计算过程：2 ×2单元里的值相加然后再乘以训练参数w, 最后加上一个偏置参数b(feature map共享相同的w和b)    (<strong>跟卷积不太一样这块，之前都是按卷积操作理解的</strong>，6 ×(4+1))</li>
 <li>connections:6×（2×2+1）×14×14</li>
-<li><img src="D:\noSystem\yangyyt.github.io\source\images\卷积和池化操作.png" alt="卷积操作与池化操作"></li>
+<li><img src="/2019/03/23/CNN-LeNet5/D:/noSystem\yangyyt.github.io\source\_posts\CNN-LeNet5\卷积和池化操作.png" alt="卷积操作与池化操作"></li>
 </ul>
 <h5 id="–C3卷积层–"><a href="#–C3卷积层–" class="headerlink" title="–C3卷积层–"></a>–C3卷积层–</h5><ul>
 <li>多核多通道卷积：14个通道，16个卷积核，得到16个feature maps</li>
@@ -402,7 +402,7 @@
 <li>S2与C3之间不是全连接而是部分连接</li>
 <li>connections:6×（3×5×5+1）+6×（4×5×5+1）+3×（4×5×5+1）+1×（6×5×5+1）×10×10</li>
 </ul>
-<p><img src="D:\noSystem\yangyyt.github.io\source\images\LeNet5中S2与C3部分连接.png" alt="S2与C3的连接"></p>
+<p><img src="/2019/03/23/CNN-LeNet5/D:/noSystem\yangyyt.github.io\source\_posts\CNN-LeNet5\LeNet5中S2与C3部分连接.png" alt="S2与C3的连接"></p>
 <ul>
 <li>此处采用部分连接（Dropout）:<ul>
 <li>减少可计算参数</li>
