@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="LeNet5,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。  用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。">
+<meta name="keywords" content="LeNet5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN---LeNet5">
+<meta property="og:url" content="http://yoursite.com/2019/03/23/CNN-LeNet5/index.html">
+<meta property="og:site_name" content="YYT">
+<meta property="og:description" content="深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。  用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5.png">
+<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/卷积和池化操作.png">
+<meta property="og:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5中S2与C3部分连接.png">
+<meta property="og:updated_time" content="2019-03-23T16:05:30.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CNN---LeNet5">
+<meta name="twitter:description" content="深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。  用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。">
+<meta name="twitter:image" content="d:/noSystem/yangyyt.github.io/source/images/LeNet5.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/23/CNN-LeNet5/">
+
+
+
+
+
+  <title>CNN---LeNet5 | YYT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/23/CNN-LeNet5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="joyes">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CNN---LeNet5</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-23T19:53:03+08:00">
+                2019-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>深度学习之CNN，学习网络结构，了解代码实现。卷积神经网络的知识点包括：局部感知、参数共享、池化。 </p>
+<p>用于图像分类的CNN经典网络有：LeNet5、AlexNet、VGG、GoogleNet、ResNet等，今天我们主要学一下LeNet5结构。</p>
+<a id="more"></a>
+<p style="text-indent:2em">Html语法在Markdown中段落首行缩进的功能，还不错！</p>
+
+<p>理解卷积神经网络，需要先知道的几个<strong>概念</strong>。</p>
+<ol>
+<li><p>局部感知</p>
+<ul>
+<li>每个神经元对图像的局部进行感知，然后在更高层将局部信息综合起来得到全局信息。</li>
+</ul>
+</li>
+<li><p>参数共享</p>
+<ul>
+<li><p>局部连接中隐藏层的每个神经元连接的是一个10×10的局部图像，因此有10×10个权值参数，将这10×10的权值参数共享给剩下的神经元。</p>
+</li>
+<li><p>可以有效的减少训练参数，加速训练过程。</p>
+</li>
+<li><p>卷积操作又包含以下：</p>
+<ul>
+<li><p>单核单通道卷积</p>
+<blockquote>
+<ul>
+<li>通过一个卷积核对一张图像进行卷积，生成一张feature map.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>多核单通道卷积</p>
+<blockquote>
+<ul>
+<li><p>一个卷积核提取的特征不充分。  </p>
+</li>
+<li><p>k个10×10卷积核，对应训练参数为k×10×10(不包含偏置参数).  </p>
+</li>
+<li><p>卷积的过程就是特征提取的过程。  </p>
+</li>
+<li><p>假设对一个1000×1000的图像用k个卷积核10×10做卷积，stride为1，则隐层的节点数量为：k×（1000-100+1）×（1000-100+1）.</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>多核多通道卷积</p>
+<blockquote>
+<ul>
+<li>多通道卷积操作通常作用在RGB或者ARGB(A代表透明度)的图像上。</li>
+<li>对于堆叠卷积层，pooling层之后可以继续接一个卷积层。对池化层的多个Feature Map操作即为多通道卷积。</li>
+<li>多核说的是卷积核个数，多通道说的是卷积核层数。</li>
+<li>假设对于ARGB图像，用2个卷积核进行卷积操作。每个卷积核会对应4个卷积模版（各不相同），卷积的Feature Map对应的位置的值是4个卷积模版分别作用在4个通道对应位置处的卷积结果相加然后取激活函数得到的。所以参数的数目为4×2×卷积核的长×卷积核的宽。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>池化</p>
+<ul>
+<li>对卷积后的Feature Map进行池化操作。包括:最大池化，平均池化。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<p>此处疑问：为什么卷积和池化层能起到作用？<a href="http://www.tensorflownews.com/2018/03/22/cnn/" target="_blank" rel="noopener">参考</a></p>
+<blockquote>
+<p>深度学习正是通过<strong>卷积操作实现从细节到抽象</strong>的过程。因为<strong>卷积的目的就是为了从输入图像中提取特征，并保留像素间的空间关系。</strong>何以理解这句话？我们输入的图像其实就是一些纹理，此时，可以将卷积核的参数也理解为纹理，我们目的是使得卷积核的纹理和图像相应位置的纹理尽可能一致。当把图像数据和卷积核的数值放在高维空间中，纹理等价于向量，卷积操作等价于向量的相乘，相乘的结果越大，说明两个向量方向越近，也即卷积核的纹理就更贴近于图像的纹理。因此，卷积后的新图像在具有卷积核纹理的区域信号会更强，其他区域则会较弱。这样，就可以实现从细节（像素点）抽象成更好区分的新特征（纹理）。<strong>每一层的卷积都会得到比上一次卷积更易区分的新特征</strong>。</p>
+<p>而<strong>池化目的主要就是为了减少权重参数</strong>，但为什么可以以Maxpooling或者MeanPooling代表这个区域的特征呢？这样不会有可能损失了一些重要特征吗？这是因为<strong>图像数据在连续区域具有相关性，一般局部区域的像素值差别不大</strong>。比如眼睛的局部区域的像素点的值差别并不大，故我们使用Maxpooling或者MeanPooling并不会损失很多特征。</p>
+</blockquote>
+<hr>
+<p>接下来，<strong>LeNet网络的结构</strong>：</p>
+<h4 id="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"><a href="#输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层" class="headerlink" title="输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"></a>输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层</h4><p><img src="D:\noSystem\yangyyt.github.io\source\images\LeNet5.png" alt="LeNet"></p>
+<ul>
+<li>​    </li>
+</ul>
+<h5 id="–输入层–"><a href="#–输入层–" class="headerlink" title="–输入层–"></a>–输入层–</h5><p>​    1 张32×32的图片</p>
+<h5 id="–C1卷积层–"><a href="#–C1卷积层–" class="headerlink" title="–C1卷积层–"></a>–C1卷积层–</h5><ul>
+<li>单通道，6个卷积核，得到6个feature maps</li>
+<li>卷积核大小（kernal size）:5×5</li>
+<li>特征图大小（feature map size）:(32-5+1)×(32-5+1)=28×28</li>
+<li>参数（parameters）：6×（5×5+1）    5×5为卷积核模版参数，1为骗纸偏置参数</li>
+<li>连接（connections）:6×（5×5 +1）×28×28</li>
+</ul>
+<h5 id="–S2池化层–"><a href="#–S2池化层–" class="headerlink" title="–S2池化层–"></a>–S2池化层–</h5><ul>
+<li>6个池化核，得到6个feature maps</li>
+<li>kernal size: 2×2</li>
+<li>feature map size: (28/2)×(28/2)=14×14</li>
+<li>parameters:6×(1+1)</li>
+<li>parameters计算过程：2 ×2单元里的值相加然后再乘以训练参数w, 最后加上一个偏置参数b(feature map共享相同的w和b)    (<strong>跟卷积不太一样这块，之前都是按卷积操作理解的</strong>，6 ×(4+1))</li>
+<li>connections:6×（2×2+1）×14×14</li>
+<li><img src="D:\noSystem\yangyyt.github.io\source\images\卷积和池化操作.png" alt="卷积操作与池化操作"></li>
+</ul>
+<h5 id="–C3卷积层–"><a href="#–C3卷积层–" class="headerlink" title="–C3卷积层–"></a>–C3卷积层–</h5><ul>
+<li>多核多通道卷积：14个通道，16个卷积核，得到16个feature maps</li>
+<li>kernel size:5×5</li>
+<li>feature map size:(14-5+1)×(14-5+1)=10×10</li>
+<li>parameters:6×（3×5×5+1）+6×（4×5×5+1）+3×(4×5×5+1)+1×(6×5×5+1)</li>
+<li>S2与C3之间不是全连接而是部分连接</li>
+<li>connections:6×（3×5×5+1）+6×（4×5×5+1）+3×（4×5×5+1）+1×（6×5×5+1）×10×10</li>
+</ul>
+<p><img src="D:\noSystem\yangyyt.github.io\source\images\LeNet5中S2与C3部分连接.png" alt="S2与C3的连接"></p>
+<ul>
+<li>此处采用部分连接（Dropout）:<ul>
+<li>减少可计算参数</li>
+<li>打破对称性，这样就能得到输入的不同特征集合</li>
+<li>从第0个feature map描述计算过程：<ul>
+<li>用一个卷积核(对应3个卷积模板，但仍称为一个卷积核，可以认为是三维卷积核)分别与S2层的3个feature maps进行卷积，然后将卷积的结果相加，再加上一个偏置，再搞个激活函数就可以得出对应的feature map了</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="–S4池化层–"><a href="#–S4池化层–" class="headerlink" title="–S4池化层–"></a>–S4池化层–</h5><ul>
+<li>16个池化核，得到16个feature maps</li>
+<li>kernal size:2×2</li>
+<li>feature map size: (10/2)×(10/2)=5×5</li>
+<li>parameters:16×（1+1）</li>
+<li>connections:16×（2×2+1）×5×5</li>
+</ul>
+<h5 id="–C5卷积层–"><a href="#–C5卷积层–" class="headerlink" title="–C5卷积层–"></a>–C5卷积层–</h5><ul>
+<li>120个卷积核，得到120个feature maps</li>
+<li>kernal size:5×5</li>
+<li>每个feature map的大小都与上一层S4的所有feature maps进行连接，这样一个卷积核就有16个卷积模版。</li>
+<li>feature map size:(5-5+1)×（5-5+1）=1×1，这样刚好变成了全连接，但是我们不把他写成F5，因为这只是巧合。</li>
+<li>parameters:120×(16×5×5+1)</li>
+<li>connections:120×(16×5×5+1）×1×1</li>
+</ul>
+<h5 id="–F6全连接层–"><a href="#–F6全连接层–" class="headerlink" title="–F6全连接层–"></a>–F6全连接层–</h5><ul>
+<li>parameters:84×（120×1×1+1）</li>
+<li>connections:84×（120×1×1+1）×1×1</li>
+</ul>
+<h5 id="–输出层–"><a href="#–输出层–" class="headerlink" title="–输出层–"></a>–输出层–</h5><p>得到分类结果，例：结果为数字几</p>
+<hr>
+<h4 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h4><p>‘’’ Python</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">print(os.getcwd())  <span class="comment">#显示当前路径</span></span><br><span class="line">os.chdir(<span class="string">"./data/"</span>)  <span class="comment">#在引号中填入你想放代码和数据的路径</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.examples.tutorials.mnist <span class="keyword">import</span> input_data</span><br><span class="line"></span><br><span class="line">mnist=input_data.read_data_sets(<span class="string">"MNIST_data"</span>,one_hot=<span class="literal">True</span>) <span class="comment">#读取数据</span></span><br><span class="line">sess=tf.InteractiveSession()</span><br><span class="line"></span><br><span class="line"><span class="comment">#权重初始化设置</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(shape)</span>:</span></span><br><span class="line">    initial=tf.truncated_normal(shape,stddev=<span class="number">0.1</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"><span class="comment">#偏置bias初始化设置</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(shape)</span>:</span></span><br><span class="line">    initial=tf.constant(<span class="number">0.1</span>,shape=shape)</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conv2d</span><span class="params">(x,W)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.conv2d(x,W,strides=[<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>],padding=<span class="string">'SAME'</span>)</span><br><span class="line">    <span class="comment">#卷积strides=[首位默认认为1，平行步长=1，竖直步长=1，尾位默认为1]</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_pool_2x2</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.max_pool(x,ksize=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>],padding=<span class="string">'SAME'</span>)</span><br><span class="line">    <span class="comment">#池化strides=[首位默认为1，平行步长=2，竖直步长=2，尾位默认为1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#placeholder:等待输入数据，x为占位符，接受型号为float32的数据，输入格式为矩阵[None,784]</span></span><br><span class="line">x=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">784</span>])</span><br><span class="line"></span><br><span class="line">y_=tf.placeholder(tf.float32,[<span class="literal">None</span>,<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">x_image=tf.reshape(x,[<span class="number">-1</span>,<span class="number">28</span>,<span class="number">28</span>,<span class="number">1</span>]) <span class="comment">#[batch=-1,height=28,width=28,in_channels=1]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#C1:卷积层</span></span><br><span class="line">W_conv1=weight_variable([<span class="number">5</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">32</span>])  <span class="comment">#[5x5卷积核，in_channels=1,out_channels=32=卷积核的个数]</span></span><br><span class="line">b_conv1=bias_variable([<span class="number">32</span>])  <span class="comment">#[32=卷积核个数=bias个数]</span></span><br><span class="line">h_conv1=tf.nn.relu(conv2d(x_image,W_conv1)+b_conv1)  <span class="comment">#激活函数</span></span><br><span class="line">h_pool1=max_pool_2x2(h_conv1)  <span class="comment">#池化方式：max pool</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#C2:卷积层</span></span><br><span class="line">W_conv2=weight_variable([<span class="number">5</span>,<span class="number">5</span>,<span class="number">32</span>,<span class="number">64</span>])</span><br><span class="line">b_conv2=bias_variable([<span class="number">64</span>])</span><br><span class="line">h_conv2=tf.nn.relu(conv2d(h_pool1,W_conv2)+b_conv2)</span><br><span class="line">h_pool2=max_pool_2x2(h_conv2)</span><br><span class="line"></span><br><span class="line">W_fc1=weight_variable([<span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>,<span class="number">1024</span>])</span><br><span class="line">b_fc1=bias_variable([<span class="number">1024</span>])</span><br><span class="line">h_pool2_flat=tf.reshape(h_pool2,[<span class="number">-1</span>,<span class="number">7</span>*<span class="number">7</span>*<span class="number">64</span>])</span><br><span class="line">h_fc1=tf.nn.relu(tf.matmul(h_pool2_flat,W_fc1)+b_fc1)</span><br><span class="line"></span><br><span class="line">keep_prob=tf.placeholder(tf.float32)</span><br><span class="line">h_fc1_drop=tf.nn.dropout(h_fc1,keep_prob)</span><br><span class="line"></span><br><span class="line">W_fc2=weight_variable([<span class="number">1024</span>,<span class="number">10</span>])</span><br><span class="line">b_fc2=bias_variable([<span class="number">10</span>])</span><br><span class="line">y_conv=tf.nn.softmax(tf.matmul(h_fc1_drop,W_fc2)+b_fc2)</span><br><span class="line"></span><br><span class="line"><span class="comment">#损失函数loss function:交叉熵cross_entropy</span></span><br><span class="line">cross_entropy=tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y_conv),reduction_indices=[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#优化方法：AdamOptimizer学习率：1e-4 交叉熵：最小化</span></span><br><span class="line">train_step=tf.train.AdamOptimizer(<span class="number">1e-4</span>).minimize(cross_entropy)</span><br><span class="line"></span><br><span class="line">correct_prediction=tf.equal(tf.argmax(y_conv,<span class="number">1</span>),tf.argmax(y_,<span class="number">1</span>)) <span class="comment">#tf.equal返回布尔值，tf.argmax(y_,1):数字1代表最大值</span></span><br><span class="line">accuracy=tf.reduce_mean(tf.cast(correct_prediction,tf.float32))</span><br><span class="line"></span><br><span class="line">tf.global_variables_initializer().run()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">20000</span>):</span><br><span class="line">    batch=mnist.train.next_batch(<span class="number">50</span>) <span class="comment">#喂入训练集的数据</span></span><br><span class="line">    <span class="keyword">if</span> i % <span class="number">1000</span>==<span class="number">0</span>:  <span class="comment">#批量梯度下降，把1000改为1：随机梯度下降</span></span><br><span class="line">        train_accuracy=accuracy.eval(feed_dict=&#123;x:batch[<span class="number">0</span>],y_:batch[<span class="number">1</span>],keep_prob:<span class="number">1.0</span>&#125;) <span class="comment"># train accuracy: accuracy.eval</span></span><br><span class="line">        print(<span class="string">"step %d,training accuracy %g"</span>%(i,train_accuracy))</span><br><span class="line">    train_step.run(feed_dict=&#123;x:batch[<span class="number">0</span>],y_:batch[<span class="number">1</span>],keep_prob:<span class="number">0.5</span>&#125;)</span><br><span class="line">print(<span class="string">"test accuracy %g"</span>%accuracy.eval(feed_dict=&#123;x:mnist.test.images,y_:mnist.test.labels,keep_prob:<span class="number">1.0</span>&#125;))</span><br></pre></td></tr></table></figure>
+<p>‘’’</p>
+<h4 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h4><p>step 0,training accuracy 0.12<br>step 1000,training accuracy 1<br>step 2000,training accuracy 0.98<br>step 3000,training accuracy 0.98<br>step 4000,training accuracy 0.94<br>step 5000,training accuracy 1<br>step 6000,training accuracy 1<br>step 7000,training accuracy 1<br>step 8000,training accuracy 1</p>
+<p>….</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeNet5/" rel="tag"># LeNet5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/23/CNN实现数字识别/" rel="next" title="CNN实现数字识别">
+                <i class="fa fa-chevron-left"></i> CNN实现数字识别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">joyes</p>
+              <p class="site-description motion-element" itemprop="description">YYT</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层"><span class="nav-number">1.</span> <span class="nav-text">输入层-c1卷积层-s2池化层-c3卷积层-s4池化层-c5卷积层-F6全连接层-输出层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#–输入层–"><span class="nav-number">1.1.</span> <span class="nav-text">–输入层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–C1卷积层–"><span class="nav-number">1.2.</span> <span class="nav-text">–C1卷积层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–S2池化层–"><span class="nav-number">1.3.</span> <span class="nav-text">–S2池化层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–C3卷积层–"><span class="nav-number">1.4.</span> <span class="nav-text">–C3卷积层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–S4池化层–"><span class="nav-number">1.5.</span> <span class="nav-text">–S4池化层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–C5卷积层–"><span class="nav-number">1.6.</span> <span class="nav-text">–C5卷积层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–F6全连接层–"><span class="nav-number">1.7.</span> <span class="nav-text">–F6全连接层–</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#–输出层–"><span class="nav-number">1.8.</span> <span class="nav-text">–输出层–</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码实现："><span class="nav-number">2.</span> <span class="nav-text">代码实现：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实验结果"><span class="nav-number">3.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joyes</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
