@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Workflow stages       参考链接  比赛链接 The competition solution workflow goes through seven stages described in the Data Science Solutions book.  1.Question or problem definition.2.Acquire training and test">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Titanic">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/Titanic/index.html">
+<meta property="og:site_name" content="YYT">
+<meta property="og:description" content="Workflow stages       参考链接  比赛链接 The competition solution workflow goes through seven stages described in the Data Science Solutions book.  1.Question or problem definition.2.Acquire training and test">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/Titanic/output_20_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/Titanic/output_21_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/Titanic/output_22_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/Titanic/output_23_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/Titanic/output_43_1.png">
+<meta property="og:updated_time" content="2019-03-27T16:13:24.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Titanic">
+<meta name="twitter:description" content="Workflow stages       参考链接  比赛链接 The competition solution workflow goes through seven stages described in the Data Science Solutions book.  1.Question or problem definition.2.Acquire training and test">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/28/Titanic/output_20_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/Titanic/">
+
+
+
+
+
+  <title>Titanic | YYT</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YYT</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/Titanic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="joyes">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YYT">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Titanic</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T00:11:00+08:00">
+                2019-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Workflow stages       <a href="https://www.kaggle.com/startupsci/titanic-data-science-solutions" target="_blank" rel="noopener">参考链接</a>  <a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">比赛链接</a></p>
+<p>The competition solution workflow goes through seven stages described in the Data Science Solutions book.</p>
+<blockquote>
+<p>1.Question or problem definition.<br>2.Acquire training and testing data.<br>3.Wrangle, prepare, cleanse the data.<br>4.Analyze, identify patterns, and explore the data.<br>5.Model, predict and solve the problem.<br>6.Visualize, report, and present the problem solving steps and final solution.<br>7.Supply or submit the results.  </p>
+<a id="more"></a>
+</blockquote>
+<p>The workflow indicates general sequence of how each stage may follow the other. However there are use cases with exceptions.</p>
+<blockquote>
+<p>a.We may combine mulitple workflow stages. We may analyze by visualizing data.<br>b.Perform a stage earlier than indicated. We may analyze data before and after wrangling.<br>c.Perform a stage multiple times in our workflow. Visualize stage may be used multiple times.<br>d.Drop a stage altogether. We may not need supply stage to productize or service enable our dataset for a competition.     </p>
+</blockquote>
+<h3 id="Question-and-problem-definition"><a href="#Question-and-problem-definition" class="headerlink" title="Question and problem definition"></a>Question and problem definition</h3><p>Competition sites like Kaggle define the problem to solve or questions to ask while providing the datasets for training your data science model and testing the model results against a test dataset. The question or problem definition for Titanic Survival competition is described here at Kaggle.</p>
+<p>Knowing from a training set of samples listing passengers who survived or did not survive the Titanic disaster, can our model determine based on a given test dataset not containing the survival information, if these passengers in the test dataset survived or not.</p>
+<p>We may also want to develop some early understanding about the domain of our problem. This is described on the Kaggle competition description page here. Here are the highlights to note.</p>
+<p>On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew. Translated 32% survival rate.<br>One of the reasons that the shipwreck led to such loss of life was that there were not enough lifeboats for the passengers and crew.<br>Although there was some element of luck involved in surviving the sinking, some groups of people were more likely to survive than others, such as women, children, and the upper-class.</p>
+<h3 id="Workflow-goals"><a href="#Workflow-goals" class="headerlink" title="Workflow goals"></a>Workflow goals</h3><p>The data science solutions workflow solves for seven major goals.</p>
+<blockquote>
+<p><strong>Classifying</strong>. We may want to classify or categorize our samples. We may also want to understand the implications or correlation of different classes with our solution goal.</p>
+</blockquote>
+<blockquote>
+<p><strong>Correlating</strong>. One can approach the problem based on available features within the training dataset. Which features within the dataset contribute significantly to our solution goal? Statistically speaking is there a correlation among a feature and solution goal? As the feature values change does the solution state change as well, and visa-versa? This can be tested both for numerical and categorical features in the given dataset. We may also want to determine correlation among features other than survival for subsequent goals and workflow stages. Correlating certain features may help in creating, completing, or correcting features.</p>
+</blockquote>
+<blockquote>
+<p><strong>Converting</strong>. For modeling stage, one needs to prepare the data. Depending on the choice of model algorithm one may require all features to be converted to numerical equivalent values. So for instance converting text categorical values to numeric values.</p>
+</blockquote>
+<blockquote>
+<p><strong>Completing</strong>. Data preparation may also require us to estimate any missing values within a feature. Model algorithms may work best when there are no missing values.</p>
+</blockquote>
+<blockquote>
+<p><strong>Correcting</strong>. We may also analyze the given training dataset for errors or possibly innacurate values within features and try to corrent these values or exclude the samples containing the errors. One way to do this is to detect any outliers among our samples or features. We may also completely discard a feature if it is not contribting to the analysis or may significantly skew the results.</p>
+</blockquote>
+<blockquote>
+<p><strong>Creating</strong>. Can we create new features based on an existing feature or a set of features, such that the new feature follows the correlation, conversion, completeness goals.</p>
+</blockquote>
+<blockquote>
+<p><strong>Charting</strong>. How to select the right visualization plots and charts depending on nature of the data and the solution goals.</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据分析</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rnd</span><br><span class="line"></span><br><span class="line"><span class="comment">#可视化</span></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment">#机器学习</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC,LinearSVC</span><br><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.naive_bayes <span class="keyword">import</span> GaussianNB</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> Perceptron</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> SGDClassifier</span><br><span class="line"><span class="keyword">from</span> sklearn.tree <span class="keyword">import</span> DecisionTreeClassifier</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#读取数据</span></span><br><span class="line">train_df=pd.read_csv(<span class="string">'./data/Titanic/train.csv'</span>)</span><br><span class="line">test_df=pd.read_csv(<span class="string">'./data/Titanic/test.csv'</span>)</span><br><span class="line">combine=[train_df,test_df]</span><br><span class="line"></span><br><span class="line"><span class="comment">#数据分析</span></span><br><span class="line">print(train_df.columns.values)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">'PassengerId'</span> <span class="string">'Survived'</span> <span class="string">'Pclass'</span> <span class="string">'Name'</span> <span class="string">'Sex'</span> <span class="string">'Age'</span> <span class="string">'SibSp'</span> <span class="string">'Parch'</span></span><br><span class="line"> <span class="string">'Ticket'</span> <span class="string">'Fare'</span> <span class="string">'Cabin'</span> <span class="string">'Embarked'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_df.head(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.tail()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">train_df.info()</span><br><span class="line">print(<span class="string">'_'</span>*<span class="number">40</span>)</span><br><span class="line">test_df.info()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 891 entries, 0 to 890</span><br><span class="line">Data columns (total 12 columns):</span><br><span class="line">PassengerId    891 non-null int64</span><br><span class="line">Survived       891 non-null int64</span><br><span class="line">Pclass         891 non-null int64</span><br><span class="line">Name           891 non-null object</span><br><span class="line">Sex            891 non-null object</span><br><span class="line">Age            714 non-null float64</span><br><span class="line">SibSp          891 non-null int64</span><br><span class="line">Parch          891 non-null int64</span><br><span class="line">Ticket         891 non-null object</span><br><span class="line">Fare           891 non-null float64</span><br><span class="line">Cabin          204 non-null object</span><br><span class="line">Embarked       889 non-null object</span><br><span class="line">dtypes: float64(2), int64(5), object(5)</span><br><span class="line">memory usage: 83.6+ KB</span><br><span class="line">________________________________________</span><br><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 418 entries, 0 to 417</span><br><span class="line">Data columns (total 11 columns):</span><br><span class="line">PassengerId    418 non-null int64</span><br><span class="line">Pclass         418 non-null int64</span><br><span class="line">Name           418 non-null object</span><br><span class="line">Sex            418 non-null object</span><br><span class="line">Age            332 non-null float64</span><br><span class="line">SibSp          418 non-null int64</span><br><span class="line">Parch          418 non-null int64</span><br><span class="line">Ticket         418 non-null object</span><br><span class="line">Fare           417 non-null float64</span><br><span class="line">Cabin          91 non-null object</span><br><span class="line">Embarked       418 non-null object</span><br><span class="line">dtypes: float64(2), int64(4), object(5)</span><br><span class="line">memory usage: 36.0+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.describe()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.describe(include=[<span class="string">'O'</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="类别、序列、离散特征的分析"><a href="#类别、序列、离散特征的分析" class="headerlink" title="类别、序列、离散特征的分析"></a>类别、序列、离散特征的分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df[[<span class="string">'Pclass'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Pclass'</span>],as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'Survived'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df[[<span class="string">"SibSp"</span>, <span class="string">"Survived"</span>]].groupby([<span class="string">'SibSp'</span>], as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'Survived'</span>, ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df[[<span class="string">"Parch"</span>, <span class="string">"Survived"</span>]].groupby([<span class="string">'Parch'</span>], as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'Survived'</span>, ascending=<span class="literal">False</span></span><br></pre></td></tr></table></figure>
+<h3 id="可视化数值特征"><a href="#可视化数值特征" class="headerlink" title="可视化数值特征"></a>可视化数值特征</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g=sns.FacetGrid(train_df,col=<span class="string">'Survived'</span>)</span><br><span class="line">g.map(plt.hist,<span class="string">'Age'</span>,bins=<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;seaborn.axisgrid.FacetGrid at 0xc574f60&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/28/Titanic/output_20_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid=sns.FacetGrid(train_df,col=<span class="string">'Survived'</span>,row=<span class="string">'Pclass'</span>,size=<span class="number">2.2</span>,aspect=<span class="number">1.6</span>)</span><br><span class="line">grid.map(plt.hist,<span class="string">'Age'</span>,alpha=<span class="number">0.5</span>,bins=<span class="number">20</span>)</span><br><span class="line">grid.add_legend()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;seaborn.axisgrid.FacetGrid at 0xc619278&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/28/Titanic/output_21_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid=sns.FacetGrid(train_df,row=<span class="string">'Embarked'</span>,size=<span class="number">2.2</span>,aspect=<span class="number">1.6</span>)</span><br><span class="line">grid.map(sns.pointplot,<span class="string">'Pclass'</span>,<span class="string">'Survived'</span>,<span class="string">'Sex'</span>,palette=<span class="string">'deep'</span>)</span><br><span class="line">grid.add_legend()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;seaborn.axisgrid.FacetGrid at 0xcd8f358&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/28/Titanic/output_22_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid=sns.FacetGrid(train_df,row=<span class="string">'Embarked'</span>,col=<span class="string">'Survived'</span>,size=<span class="number">2.2</span>,aspect=<span class="number">1.6</span>)</span><br><span class="line">grid.map(sns.barplot,<span class="string">'Sex'</span>,<span class="string">'Fare'</span>,alpha=<span class="number">0.5</span>,ci=<span class="literal">None</span>)</span><br><span class="line">grid.add_legend()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;seaborn.axisgrid.FacetGrid at 0xcf12f60&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/28/Titanic/output_23_1.png" alt="png"></p>
+<h3 id="去除特征"><a href="#去除特征" class="headerlink" title="去除特征"></a>去除特征</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">"Before"</span>,train_df.shape,test_df.shape,combine[<span class="number">0</span>].shape,combine[<span class="number">1</span>].shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Before (891, 12) (418, 11) (891, 12) (418, 11)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">train_df=train_df.drop([<span class="string">'Ticket'</span>,<span class="string">'Cabin'</span>],axis=<span class="number">1</span>)</span><br><span class="line">test_df=test_df.drop([<span class="string">'Ticket'</span>,<span class="string">'Cabin'</span>],axis=<span class="number">1</span>)</span><br><span class="line">combine=[train_df,test_df]</span><br><span class="line">print(<span class="string">"After"</span>,train_df.shape,test_df.shape,combine[<span class="number">0</span>].shape,combine[<span class="number">1</span>].shape)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">After (891, 10) (418, 9) (891, 10) (418, 9)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.info()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 891 entries, 0 to 890</span><br><span class="line">Data columns (total 10 columns):</span><br><span class="line">PassengerId    891 non-null int64</span><br><span class="line">Survived       891 non-null int64</span><br><span class="line">Pclass         891 non-null int64</span><br><span class="line">Name           891 non-null object</span><br><span class="line">Sex            891 non-null object</span><br><span class="line">Age            714 non-null float64</span><br><span class="line">SibSp          891 non-null int64</span><br><span class="line">Parch          891 non-null int64</span><br><span class="line">Fare           891 non-null float64</span><br><span class="line">Embarked       889 non-null object</span><br><span class="line">dtypes: float64(2), int64(5), object(3)</span><br><span class="line">memory usage: 69.7+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="creating-new-feature-extracting-from-existing"><a href="#creating-new-feature-extracting-from-existing" class="headerlink" title="creating new feature extracting from existing"></a>creating new feature extracting from existing</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset.Name.str.extract(<span class="string">'([A-Za-z]+)\.'</span>,expand=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dataset.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(418, 10)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.crosstab(train_df[<span class="string">'Title'</span>],train_df[<span class="string">'Sex'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#replace many titles with a more common name or classify them as Rare</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].replace([<span class="string">'Lady'</span>,<span class="string">'Countess'</span>,<span class="string">'Capt'</span>,<span class="string">'Col'</span>,\</span><br><span class="line">                                              <span class="string">'Don'</span>,<span class="string">'Dr'</span>,<span class="string">'Major'</span>,<span class="string">'Rev'</span>,<span class="string">'Sir'</span>,\</span><br><span class="line">                                               <span class="string">'Jonkheer'</span>,<span class="string">'Dona'</span>],<span class="string">'Rare'</span>)</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].replace([<span class="string">'Mlle'</span>,<span class="string">'Miss'</span>])</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].replace(<span class="string">'Ms'</span>,<span class="string">'Miss'</span>)</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].replace(<span class="string">'Mme'</span>,<span class="string">'Mrs'</span>)</span><br><span class="line"></span><br><span class="line">train_df[[<span class="string">'Title'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Title'</span>],as_index=<span class="literal">False</span>).mean()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将类别特征转换成数值特征</span></span><br><span class="line">title_mapping=&#123;<span class="string">"Mr"</span>:<span class="number">1</span>,<span class="string">"Miss"</span>:<span class="number">2</span>,<span class="string">"Mrs"</span>:<span class="number">3</span>,<span class="string">"Master"</span>:<span class="number">4</span>,<span class="string">"Rare"</span>:<span class="number">5</span>&#125;</span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].map(title_mapping)</span><br><span class="line">    dataset[<span class="string">'Title'</span>]=dataset[<span class="string">'Title'</span>].fillna(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_df.head(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#删除训练集和测试集中的Name特征，删除训练集中的name特征</span></span><br><span class="line">train_df=train_df.drop([<span class="string">'Name'</span>,<span class="string">'PassengerId'</span>],axis=<span class="number">1</span>)</span><br><span class="line">test_df=test_df.drop([<span class="string">'Name'</span>],axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">combine=[train_df,test_df]</span><br><span class="line">train_df.shape,test_df.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((891, 9), (418, 9))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Sex'</span>]=dataset[<span class="string">'Sex'</span>].map(&#123;<span class="string">'female'</span>:<span class="number">1</span>,<span class="string">'male'</span>:<span class="number">0</span>&#125;).astype(int)</span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.info()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 891 entries, 0 to 890</span><br><span class="line">Data columns (total 9 columns):</span><br><span class="line">Survived    891 non-null int64</span><br><span class="line">Pclass      891 non-null int64</span><br><span class="line">Sex         891 non-null int32</span><br><span class="line">Age         714 non-null float64</span><br><span class="line">SibSp       891 non-null int64</span><br><span class="line">Parch       891 non-null int64</span><br><span class="line">Fare        891 non-null float64</span><br><span class="line">Embarked    889 non-null object</span><br><span class="line">Title       891 non-null int64</span><br><span class="line">dtypes: float64(2), int32(1), int64(5), object(1)</span><br><span class="line">memory usage: 59.2+ KB</span><br></pre></td></tr></table></figure>
+<h3 id="补全缺失值（数值连续特征）"><a href="#补全缺失值（数值连续特征）" class="headerlink" title="补全缺失值（数值连续特征）"></a>补全缺失值（数值连续特征）</h3><blockquote>
+<p>1.生成随机数[mean,std]<br>2.通过相关特征预测预测缺失值，如年龄，性别，pclass特征，可以根据相同性别，pclass的样本的中位数预测年龄<br>3.前两种方法组合，用相关特征的样本的均值和方差之间进行随机生成数据<br>第1,2种方法都包含随机性，一般选择第二种</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grid=sns.FacetGrid(train_df,row=<span class="string">'Pclass'</span>,col=<span class="string">'Sex'</span>,size=<span class="number">2.2</span>,aspect=<span class="number">1.6</span>)</span><br><span class="line">grid.map(plt.hist,<span class="string">'Age'</span>,alpha=<span class="number">.5</span>,bins=<span class="number">20</span>)</span><br><span class="line">grid.add_legend()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;seaborn.axisgrid.FacetGrid at 0xe211f28&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/03/28/Titanic/output_43_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">guess_ages=np.zeros((<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">guess_ages</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array([[ 0.,  0.,  0.],</span><br><span class="line">       [ 0.,  0.,  0.]])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">3</span>):</span><br><span class="line">            guess_df=dataset[(dataset[<span class="string">'Sex'</span>]==i) &amp; (dataset[<span class="string">'Pclass'</span>]==j+<span class="number">1</span>)][<span class="string">'Age'</span>].dropna()</span><br><span class="line">            <span class="comment">#age_mean=guess_df.mean()</span></span><br><span class="line">            <span class="comment">#age_std=guess_df.std()</span></span><br><span class="line">            <span class="comment">#age_guess=rnd.uniform(age_mean-age_std,age_mean+age_std)</span></span><br><span class="line">            age_guess=guess_df.median()</span><br><span class="line">            <span class="comment">#convert random age float to nearest .5 age</span></span><br><span class="line">            guess_ages[i,j]=int(age_guess/<span class="number">0.5</span>+<span class="number">0.5</span>)*<span class="number">0.5</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">2</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">3</span>):</span><br><span class="line">            dataset.loc[(dataset.Age.isnull()) &amp; (dataset.Sex==i) &amp; (dataset.Pclass==j+<span class="number">1</span>),\</span><br><span class="line">                       <span class="string">'Age'</span>]=guess_ages[i,j]</span><br><span class="line">    dataset[<span class="string">'Age'</span>]=dataset[<span class="string">'Age'</span>].astype(int)</span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#let us create Age bands and determine correlations with Survived</span></span><br><span class="line">train_df[<span class="string">'AgeBand'</span>]=pd.cut(train_df[<span class="string">'Age'</span>],<span class="number">5</span>)</span><br><span class="line">train_df[[<span class="string">'AgeBand'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'AgeBand'</span>],as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'AgeBand'</span>,ascending=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#let us replace Age with ordinals based on these bands</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset.loc[dataset[<span class="string">'Age'</span>]&lt;=<span class="number">16</span>,<span class="string">'Age'</span>]=<span class="number">0</span></span><br><span class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>]&gt;<span class="number">16</span>) &amp; (dataset[<span class="string">'Age'</span>]&lt;=<span class="number">32</span>),<span class="string">'Age'</span>]=<span class="number">1</span></span><br><span class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>]&gt;<span class="number">32</span>) &amp; (dataset[<span class="string">'Age'</span>]&lt;=<span class="number">48</span>),<span class="string">'Age'</span>]=<span class="number">2</span></span><br><span class="line">    dataset.loc[(dataset[<span class="string">'Age'</span>]&gt;<span class="number">48</span>) &amp; (dataset[<span class="string">'Age'</span>]&lt;=<span class="number">64</span>),<span class="string">'Age'</span>]=<span class="number">3</span></span><br><span class="line">    dataset.loc[dataset[<span class="string">'Age'</span>]&gt;<span class="number">64</span>,<span class="string">'Age'</span>]</span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#we can not removet the AgeBand feature</span></span><br><span class="line">train_df=train_df.drop([<span class="string">'AgeBand'</span>],axis=<span class="number">1</span>)</span><br><span class="line">combine=[train_df,test_df]</span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#create new feature combining existing features</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">create a new feature for FamilySize which combines Parch and SibSp.This will enable us </span></span><br><span class="line"><span class="string">to drop Parch and SibSp from our datasets</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'FamilySize'</span>]=dataset[<span class="string">'SibSp'</span>]+dataset[<span class="string">'Parch'</span>]+<span class="number">1</span></span><br><span class="line">train_df[[<span class="string">'FamilySize'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'FamilySize'</span>],as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'Survived'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#we can create another feature called IsAlone</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'IsAlone'</span>]=<span class="number">0</span></span><br><span class="line">    dataset.loc[dataset[<span class="string">'FamilySize'</span>]==<span class="number">1</span>,<span class="string">'IsAlone'</span>]=<span class="number">1</span></span><br><span class="line">    </span><br><span class="line">train_df[[<span class="string">'IsAlone'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'IsAlone'</span>],as_index=<span class="literal">False</span>).mean()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#let us drop Parch,SibSp,and FamilySize features in faver of IsAlone</span></span><br><span class="line">train_df=train_df.drop([<span class="string">'Parch'</span>,<span class="string">'SibSp'</span>,<span class="string">'FamilySize'</span>],axis=<span class="number">1</span>)</span><br><span class="line">test_df=test_df.drop([<span class="string">'Parch'</span>,<span class="string">'SibSp'</span>,<span class="string">'FamilySize'</span>],axis=<span class="number">1</span>)</span><br><span class="line">combine=[train_df,test_df]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#we can also create an artificial feature combining Pclass and Age</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Age*Class'</span>]=dataset.Age*dataset.Pclass</span><br><span class="line">train_df.loc[:,[<span class="string">'Age*Class'</span>,<span class="string">'Age'</span>,<span class="string">'Pclass'</span>]].head(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#completing a categorical feature</span></span><br><span class="line">train_df.info()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 891 entries, 0 to 890</span><br><span class="line">Data columns (total 9 columns):</span><br><span class="line">Survived     891 non-null int64</span><br><span class="line">Pclass       891 non-null int64</span><br><span class="line">Sex          891 non-null int32</span><br><span class="line">Age          891 non-null int32</span><br><span class="line">Fare         891 non-null float64</span><br><span class="line">Embarked     889 non-null object</span><br><span class="line">Title        891 non-null int64</span><br><span class="line">IsAlone      891 non-null int64</span><br><span class="line">Age*Class    891 non-null int64</span><br><span class="line">dtypes: float64(1), int32(2), int64(5), object(1)</span><br><span class="line">memory usage: 55.8+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Embarked feature takes S,Q,C values based on port of embarkation.</span></span><br><span class="line"><span class="comment">#our training dataset has two missing values,</span></span><br><span class="line"><span class="comment">#We simply fill these with the most common occurance</span></span><br><span class="line">freq_port=train_df.Embarked.dropna().mode()[<span class="number">0</span>]</span><br><span class="line">freq_port</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;S&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Embarked'</span>]=dataset[<span class="string">'Embarked'</span>].fillna(freq_port)</span><br><span class="line">train_df[[<span class="string">'Embarked'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'Embarked'</span>],as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'Survived'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Converting categorical feature to numeric</span></span><br><span class="line"><span class="comment">#we can now convert the EmbarkedFill feature by creating a new numeric Port feature</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset[<span class="string">'Embarked'</span>]=dataset[<span class="string">'Embarked'</span>].map(&#123;<span class="string">'S'</span>:<span class="number">0</span>,<span class="string">'C'</span>:<span class="number">1</span>,<span class="string">'Q'</span>:<span class="number">2</span>&#125;).astype(int)</span><br><span class="line">    </span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Quick completing and converting a numeric feature</span></span><br><span class="line">test_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_df.info()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;</span><br><span class="line">RangeIndex: 418 entries, 0 to 417</span><br><span class="line">Data columns (total 9 columns):</span><br><span class="line">PassengerId    418 non-null int64</span><br><span class="line">Pclass         418 non-null int64</span><br><span class="line">Sex            418 non-null int32</span><br><span class="line">Age            418 non-null int32</span><br><span class="line">Fare           417 non-null float64</span><br><span class="line">Embarked       418 non-null int32</span><br><span class="line">Title          418 non-null int64</span><br><span class="line">IsAlone        418 non-null int64</span><br><span class="line">Age*Class      418 non-null int64</span><br><span class="line">dtypes: float64(1), int32(3), int64(5)</span><br><span class="line">memory usage: 24.6 KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">we can now complete the Fare feature for single missing value in test dataset using</span></span><br><span class="line"><span class="string">mode to get the value that occurs most frequently for this feature.we do this in a single</span></span><br><span class="line"><span class="string">line of code.</span></span><br><span class="line"><span class="string">Note that we are not creating an intermediate new feature or doing any further analysis</span></span><br><span class="line"><span class="string">for correlation to guess missing feature as we are replacing only a single value.The completion goal</span></span><br><span class="line"><span class="string">achieves desired requirement for model algorithm to operate on nonnull values.</span></span><br><span class="line"><span class="string">we may also want round off the fare to two decimals as it represents currency.</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line">test_df[<span class="string">'Fare'</span>].fillna(test_df[<span class="string">'Fare'</span>].dropna().median(),inplace=<span class="literal">True</span>)</span><br><span class="line">test_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#we can not create FareBand</span></span><br><span class="line">train_df[<span class="string">'FareBand'</span>]=pd.qcut(train_df[<span class="string">'Fare'</span>],<span class="number">4</span>)</span><br><span class="line">train_df[[<span class="string">'FareBand'</span>,<span class="string">'Survived'</span>]].groupby([<span class="string">'FareBand'</span>],as_index=<span class="literal">False</span>).mean().sort_values(by=<span class="string">'FareBand'</span>,ascending=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#convert the Fare feature to ordinal values based on the FareBand</span></span><br><span class="line"><span class="keyword">for</span> dataset <span class="keyword">in</span> combine:</span><br><span class="line">    dataset.loc[dataset[<span class="string">'Fare'</span>]&lt;=<span class="number">7.91</span>,<span class="string">'Fare'</span>]=<span class="number">0</span></span><br><span class="line">    dataset.loc[(dataset[<span class="string">'Fare'</span>]&gt;<span class="number">7.91</span>) &amp; (dataset[<span class="string">'Fare'</span>]&lt;=<span class="number">14.454</span>),<span class="string">'Fare'</span>]=<span class="number">1</span></span><br><span class="line">    dataset.loc[(dataset[<span class="string">'Fare'</span>]&gt;<span class="number">14.454</span>) &amp; (dataset[<span class="string">'Fare'</span>]&lt;=<span class="number">31</span>),<span class="string">'Fare'</span>]=<span class="number">2</span></span><br><span class="line">    dataset.loc[dataset[<span class="string">'Fare'</span>]&gt;<span class="number">31</span>,<span class="string">'Fare'</span>]=<span class="number">3</span></span><br><span class="line">    dataset[<span class="string">'Fare'</span>]=dataset[<span class="string">'Fare'</span>].astype(int)</span><br><span class="line">    </span><br><span class="line">train_df=train_df.drop([<span class="string">'FareBand'</span>],axis=<span class="number">1</span>)</span><br><span class="line">combine=[train_df,test_df]</span><br><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#And the test dataset</span></span><br><span class="line">test_df.head()</span><br></pre></td></tr></table></figure>
+<h2 id="Model-Predict-and-solve"><a href="#Model-Predict-and-solve" class="headerlink" title="Model,Predict and solve"></a>Model,Predict and solve</h2><p>接下来我们 要训练一个模型进行预测。一共有60+预测模型以供我们选择，我们必须理解问题的类型，将解决方案缩小到几个可选的模型中去。我们的问题是一个分类和回归的问题，我们想要确定输出（survived or not）和特征变量之间的关系。我们将要执行一种监督学习的模型，在训练过程中会给定数据。在监督学习和分类回归条件下，我们将模型缩小到一下几种：  </p>
+<blockquote>
+<p>1.逻辑回归<br>2.KNN<br>3.支持向量机<br>4.贝叶斯<br>5.决策树<br>6.随机森林<br>7.感知机<br>8.人工神经网络<br>9.RVM or Relevance Vector Machine</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X_train=train_df.drop(<span class="string">"Survived"</span>,axis=<span class="number">1</span>)</span><br><span class="line">Y_train=train_df[<span class="string">"Survived"</span>]</span><br><span class="line">X_test=test_df.drop(<span class="string">"PassengerId"</span>,axis=<span class="number">1</span>).copy()</span><br><span class="line">X_train.shape,Y_train.shape,X_test.shape</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">((891, 8), (891,), (418, 8))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_df.head()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_df.head()</span><br></pre></td></tr></table></figure>
+<h3 id="1-Logistic-Regression"><a href="#1-Logistic-Regression" class="headerlink" title="1.Logistic Regression"></a>1.Logistic Regression</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logreg=LogisticRegression()</span><br><span class="line">logreg.fit(X_train,Y_train)</span><br><span class="line">Y_pred=logreg.predict(X_test)</span><br><span class="line">acc_log=round(logreg.score(X_train,Y_train)*<span class="number">100</span>, <span class="number">2</span>)</span><br><span class="line">acc_log</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">80.579999999999998</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logreg = LogisticRegression()</span><br><span class="line">logreg.fit(X_train, Y_train)</span><br><span class="line">Y_pred = logreg.predict(X_test)</span><br><span class="line">acc_log = round(logreg.score(X_train, Y_train) * <span class="number">100</span>, <span class="number">2</span>) <span class="comment">#？？？输出的居然不是2位小数</span></span><br><span class="line">acc_log</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">80.579999999999998</span></span><br></pre></td></tr></table></figure>
+<p>‘’’<br>We can use Logistic Regression to validate our assumptions and decisions for feature creating and completing goals.<br>This can be done by calculating the coefficient of the features in the decision function.</p>
+<p>Positive coefficients increase the log-odds of the response (and thus increase the probability),<br>and negative coefficients decrease the log-odds of the response (and thus decrease the probability).  </p>
+<blockquote>
+<p>1.Sex is highest positivie coefficient, implying as the Sex value increases (male: 0 to female: 1), the probability of Survived=1 increases the most.<br>2.Inversely as Pclass increases, probability of Survived=1 decreases the most.<br>3.This way Age*Class is a good artificial feature to model as it has second highest negative correlation with Survived.<br>4.So is Title as second highest positive correlation.   </p>
+</blockquote>
+<p>‘’’</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">coeff_df=pd.DataFrame(train_df.columns.delete(<span class="number">0</span>))</span><br><span class="line">coeff_df.columns=[<span class="string">'Feature'</span>]</span><br><span class="line">coeff_df[<span class="string">"Correlation"</span>]=pd.Series(logreg.coef_[<span class="number">0</span>])</span><br><span class="line">coeff_df.sort_values(by=<span class="string">'Correlation'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="SVM"><a href="#SVM" class="headerlink" title="SVM"></a>SVM</h3><p>SVM training algorithm builds a model that assigns new test samples to one category or the other, making it a non-probabilistic binary linear classifier.<br>Note that the model generates a confidence score which is higher than Logistics Regression model</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">svc=SVC()</span><br><span class="line">svc.fit(X_train,Y_train)</span><br><span class="line">Y_pred=svc.predict(X_test)</span><br><span class="line">acc_svc=round(svc.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_svc</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">84.290000000000006</span><br></pre></td></tr></table></figure>
+<h3 id="KNN"><a href="#KNN" class="headerlink" title="KNN"></a>KNN</h3><p>In pattern recognition, the k-Nearest Neighbors algorithm (or k-NN for short) is a non-parametric method used for classification and regression. A sample is classified by a majority vote of its neighbors, with the sample being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.<br>KNN confidence score is better than Logistics Regression and not worse than SVM.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">knn=KNeighborsClassifier(n_neighbors=<span class="number">3</span>)</span><br><span class="line">knn.fit(X_train,Y_train)</span><br><span class="line">Y_pred=knn.predict(X_test)</span><br><span class="line">acc_knn=round(knn.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_knn</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">84.849999999999994</span><br></pre></td></tr></table></figure>
+<h3 id="Bayes"><a href="#Bayes" class="headerlink" title="Bayes"></a>Bayes</h3><p>In machine learning, naive Bayes classifiers are a family of simple probabilistic classifiers based on applying Bayes’ theorem with strong (naive) independence assumptions between the features. Naive Bayes classifiers are highly scalable, requiring a number of parameters linear in the number of variables (features) in a learning problem.<br>The model generated confidence score is the lowest among the models evaluated so far.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Gaussian Naive Bayes</span></span><br><span class="line">gaussian=GaussianNB()</span><br><span class="line">gaussian.fit(X_train,Y_train)</span><br><span class="line">Y_pred=gaussian.predict(X_test)</span><br><span class="line">acc_gaussian=round(gaussian.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_gaussian</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">71.379999999999995</span><br></pre></td></tr></table></figure>
+<h3 id="Perceptron"><a href="#Perceptron" class="headerlink" title="Perceptron"></a>Perceptron</h3><p>The perceptron is an algorithm for supervised learning of binary classifiers (functions that can decide whether an input, represented by a vector of numbers, belongs to some specific class or not). It is a type of linear classifier, i.e. a classification algorithm that makes its predictions based on a linear predictor function combining a set of weights with the feature vector. The algorithm allows for online learning, in that it processes elements in the training set one at a time. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">perceptron=Perceptron()</span><br><span class="line">perceptron.fit(X_train,Y_train)</span><br><span class="line">Y_pred=perceptron.predict(X_test)</span><br><span class="line">acc_perceptron=round(perceptron.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_perceptron</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\noSystem\software\Anaconda3\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:128: FutureWarning: max_iter and tol parameters have been added in &lt;class 'sklearn.linear_model.perceptron.Perceptron'&gt; in 0.19. If both are left unset, they default to max_iter=5 and tol=None. If tol is not None, max_iter defaults to max_iter=1000. From 0.21, default max_iter will be 1000, and default tol will be 1e-3.</span><br><span class="line">  <span class="string">"and default tol will be 1e-3."</span> % type(self), FutureWarning)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">79.569999999999993</span><br></pre></td></tr></table></figure>
+<h3 id="Linear-SVC"><a href="#Linear-SVC" class="headerlink" title="Linear SVC"></a>Linear SVC</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">linear_svc=LinearSVC()</span><br><span class="line">linear_svc.fit(X_train,Y_train)</span><br><span class="line">Y_pred=linear_svc.predict(X_test)</span><br><span class="line">acc_linear_svc=round(linear_svc.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_linear_svc</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">80.129999999999995</span></span><br></pre></td></tr></table></figure>
+<h3 id="Stochastic-Gradient-Descent"><a href="#Stochastic-Gradient-Descent" class="headerlink" title="Stochastic Gradient Descent"></a>Stochastic Gradient Descent</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sgd=SGDClassifier()</span><br><span class="line">sgd.fit(X_train,Y_train)</span><br><span class="line">Y_pres=sgd.predict(X_test)</span><br><span class="line">acc_sgd=round(sgd.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_sgd</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">D:\noSystem\software\Anaconda3\lib\site-packages\sklearn\linear_model\stochastic_gradient.py:128: FutureWarning: max_iter and tol parameters have been added in &lt;class &apos;sklearn.linear_model.stochastic_gradient.SGDClassifier&apos;&gt; in 0.19. If both are left unset, they default to max_iter=5 and tol=None. If tol is not None, max_iter defaults to max_iter=1000. From 0.21, default max_iter will be 1000, and default tol will be 1e-3.</span><br><span class="line">  &quot;and default tol will be 1e-3.&quot; % type(self), FutureWarning)</span><br><span class="line"></span><br><span class="line">80.25</span><br></pre></td></tr></table></figure>
+<h3 id="Decision-Tree"><a href="#Decision-Tree" class="headerlink" title="Decision Tree"></a>Decision Tree</h3><p>This model uses a decision tree as a predictive model which maps features (tree branches) to conclusions about the target value (tree leaves). Tree models where the target variable can take a finite set of values are called classification trees; in these tree structures, leaves represent class labels and branches represent conjunctions of features that lead to those class labels. Decision trees where the target variable can take continuous values (typically real numbers) are called regression trees.<br>The model confidence score is the highest among models evaluated so far.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">decision_tree=DecisionTreeClassifier()</span><br><span class="line">decision_tree.fit(X_train,Y_train)</span><br><span class="line">Y_pred=decision_tree.predict(X_test)</span><br><span class="line">acc_decision_tree=round(decision_tree.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_decision_tree</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">87.209999999999994</span></span><br></pre></td></tr></table></figure>
+<h3 id="Random-Forest"><a href="#Random-Forest" class="headerlink" title="Random Forest"></a>Random Forest</h3><p>The next model Random Forests is one of the most popular. Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks, that operate by constructing a multitude of decision trees (n_estimators=100) at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees.<br>The model confidence score is the highest among models evaluated so far. We decide to use this model’s output (Y_pred) for creating our competition submission of results.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">random_forest=RandomForestClassifier(n_estimators=<span class="number">100</span>)</span><br><span class="line">random_forest.fit(X_train,Y_train)</span><br><span class="line">Y_pred=random_forest.predict(X_test)</span><br><span class="line">random_forest.score(X_train,Y_train)</span><br><span class="line">acc_random_forest=round(random_forest.score(X_train,Y_train)*<span class="number">100</span>,<span class="number">2</span>)</span><br><span class="line">acc_random_forest</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">87.209999999999994</span><br></pre></td></tr></table></figure>
+<h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><p>We can now rank our evaluation of all the models to choose the best one for our problem. While both Decision Tree and Random Forest score the same, we choose to use Random Forest as they correct for decision trees’ habit of overfitting to their training set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">models=pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">'Model'</span>:[<span class="string">'Support Vector Machines'</span>,<span class="string">'KNN'</span>,<span class="string">'Logistic Regression'</span>,<span class="string">'Random Forest'</span>,</span><br><span class="line">            <span class="string">'Naive Bayes'</span>,<span class="string">'Perceptron'</span>,<span class="string">'Stochastic Gradient Decent'</span>,<span class="string">'Linear SVC'</span>,</span><br><span class="line">            <span class="string">'Decision Tree'</span>],</span><br><span class="line">    <span class="string">'Score'</span>:[acc_svc,acc_knn,acc_log,acc_random_forest,acc_gaussian,acc_perceptron,</span><br><span class="line">            acc_sgd,acc_linear_svc,acc_decision_tree]</span><br><span class="line">&#125;)</span><br><span class="line">models.sort_values(by=<span class="string">'Score'</span>,ascending=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">submission=pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">"PassengerID"</span>:test_df[<span class="string">"PassengerId"</span>],</span><br><span class="line">    <span class="string">"Survived"</span>:Y_pred</span><br><span class="line">&#125;)</span><br><span class="line">submission.to_csv(<span class="string">'./data/Titanic/output/submission.csv'</span>,index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<p>Our submission to the competition site Kaggle results in scoring 3,883 of 6,082 competition entries. This result is indicative while the competition is running. This result only accounts for part of the submission dataset. Not bad for our first attempt. Any suggestions to improve our score are most welcome.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/推荐系统/" rel="next" title="推荐系统">
+                <i class="fa fa-chevron-left"></i> 推荐系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">joyes</p>
+              <p class="site-description motion-element" itemprop="description">YYT</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Question-and-problem-definition"><span class="nav-number">1.</span> <span class="nav-text">Question and problem definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Workflow-goals"><span class="nav-number">2.</span> <span class="nav-text">Workflow goals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类别、序列、离散特征的分析"><span class="nav-number">3.</span> <span class="nav-text">类别、序列、离散特征的分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可视化数值特征"><span class="nav-number">4.</span> <span class="nav-text">可视化数值特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去除特征"><span class="nav-number">5.</span> <span class="nav-text">去除特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#creating-new-feature-extracting-from-existing"><span class="nav-number">6.</span> <span class="nav-text">creating new feature extracting from existing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补全缺失值（数值连续特征）"><span class="nav-number">7.</span> <span class="nav-text">补全缺失值（数值连续特征）</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Predict-and-solve"><span class="nav-number"></span> <span class="nav-text">Model,Predict and solve</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Logistic-Regression"><span class="nav-number">1.</span> <span class="nav-text">1.Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVM"><span class="nav-number">2.</span> <span class="nav-text">SVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KNN"><span class="nav-number">3.</span> <span class="nav-text">KNN</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bayes"><span class="nav-number">4.</span> <span class="nav-text">Bayes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perceptron"><span class="nav-number">5.</span> <span class="nav-text">Perceptron</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linear-SVC"><span class="nav-number">6.</span> <span class="nav-text">Linear SVC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stochastic-Gradient-Descent"><span class="nav-number">7.</span> <span class="nav-text">Stochastic Gradient Descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Decision-Tree"><span class="nav-number">8.</span> <span class="nav-text">Decision Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Forest"><span class="nav-number">9.</span> <span class="nav-text">Random Forest</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型评估"><span class="nav-number"></span> <span class="nav-text">模型评估</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">joyes</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
